@@ -1,0 +1,26 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 05</title>
+    <script type="text/javascript" src="./task5.js"></script>
+</head>
+
+<body>
+    <div>
+        <div>
+            <input id="inputNum" type="number" />
+            <button id="leftIn" onclick="insertNum('left')">左侧入</button>
+            <button id="rightIn" onclick="insertNum('right')">右侧入</button>
+            <button id="leftOut" onclick="deleteNum(-1, 'left')">左侧出</button>
+            <button id="rightOut" onclick="deleteNum(-1, 'right')">右侧出</button>
+        </div>
+        <div id="numberList" onclick="deleteNum(event.target)">
+            <!--数字列表-->
+        </div>
+        <button id="sortButton" onclick="sortList()">排序</button>
+    </div>
+</body>
+
+</html>
