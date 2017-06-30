@@ -3,13 +3,23 @@ window.onload = () => {
         numberList = document.getElementById("numberList");
 
     insertNum = direction => {
-        console.log(inputNum.value);
-        let tempSpan = document.createElement("span");
-        tempSpan.innerHTML = inputNum.value + "&nbsp;";
-        if (direction === "left") {
-            numberList.insertBefore(tempSpan, numberList.firstChild);
-        } else if (direction === "right") {
-            numberList.appendChild(tempSpan);
+        //console.log(inputNum.value);
+        console.log(inputNum.value.split(/\s|,|，|、/));
+        let charList = inputNum.value.split(/\s|,|，|、/),
+            tempChild = numberList.firstChild;
+        if (charList.length > 0) {
+            for (let i = 0; i < charList.length; i++) {
+                let tempSpan = document.createElement("span");
+                tempSpan.innerHTML = charList[i];
+                if (direction === "left") {
+                    numberList.insertBefore(tempSpan, tempChild);
+                } else if (direction === "right") {
+                    numberList.appendChild(tempSpan);
+                }
+                tempSpan.style.display = "inline-block";
+                tempSpan.style.margin = "10px 10px 20px 10px";
+                tempSpan.style.backgroundColor = "red";
+            }
         }
     }
 
@@ -26,6 +36,19 @@ window.onload = () => {
             } else {
                 alert("删除：" + node.innerText);
                 numberList.removeChild(node);
+            }
+        }
+    }
+
+    searchChar = () => {
+        console.log(numberList.childNodes);
+        let inputSearch = document.getElementById("inputSearch").value,
+            re = new RegExp(inputSearch + "+");
+        if (numberList.childNodes.length > 0) {
+            for (let i = 0; i < numberList.childNodes.length; i++) {
+                if (re.test(numberList.childNodes[i].innerText)) {
+                    numberList.childNodes[i].style.backgroundColor = "blue";
+                }
             }
         }
     }
